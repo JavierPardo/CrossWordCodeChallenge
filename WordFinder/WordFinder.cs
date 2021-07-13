@@ -12,7 +12,7 @@ namespace WordFinder
         private readonly IEnumerable<string> _matrix;
         private readonly IWordFinder[] _wordFinders;
 
-        private IDictionary<string, byte> _findings;
+        private IDictionary<string, int> _findings;
 
         public WordFinder(IEnumerable<String> matrix)
         {
@@ -36,7 +36,7 @@ namespace WordFinder
         public IEnumerable<string> Find(IEnumerable<string> wordstream)
         {
             var groupedWords = GroupWords(wordstream);
-            _findings = wordstream.ToDictionary(x => x, x => (byte)0b0);
+            _findings = wordstream.ToDictionary(x => x, x => 0);
 
             for (byte row = 0; row < _matrix.Count(); row++)
             {
